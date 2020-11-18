@@ -1,4 +1,18 @@
-# Caffe as Dynamic Library (VS + CUDA)
+# Caffe as Dynamic Library (Visual Studio 2019 + CUDA 11 + cuDNN 8)
+
+1. [What To Expect](#what-to-expect)
+2. [Required Steps](#required-steps)
+3. [Edits in Current Code (Optional Section)](#edits-in-current-code-optional-section)
+
+
+
+## What To Expect
+This code is only meant to generate the DLL/lib/include files that OpenPose needs on Windows. We might do changes or remove functionality in order to make it compile or to make it simpler.
+- Disabled dependencies: Level DB, OpenCV, and Python dependencies.
+- Deconvolution layer was commented out to avoid compiler errors on cuDNN 8.
+
+
+
 ## Required Steps
 ### Prerequisites
 Rename path as short as possible (sometimes error for paths too long). Alternative: Disable 255-character limit of Windows (e.g., installing the latest Python.)
@@ -66,7 +80,7 @@ Rename path as short as possible (sometimes error for paths too long). Alternati
 
 
 
-## Edits in Current Code (Optional)
+## Edits in Current Code (Optional Section)
 These are the changes that the current code already have. This is just for your information, out of curiosity.
 
 ### Edits Already Done To Original Code
