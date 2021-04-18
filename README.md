@@ -56,25 +56,25 @@ Rename path as short as possible (sometimes error for paths too long). Alternati
   else(MSVC_VERSION EQUAL 1400) #if(MSVC_VERSION EQUAL 1914)
       set(OpenCV_RUNTIME vc15)
 ```
-2. Remove build, re-run `.\scripts\build_win.cmd`. After new error:
+2. Remove build, re-run `.\scripts\build_win.cmd`. After new error (or avoid waiting for the error by just doing the following as soon as it start compiling):
     1. Modify `caffe\build\include\caffe\proto\caffe.pb.*`:
-        1. Comment out the 2 lines that start with `static const DimCheckMode STRICT` (*.pb.h).
+        1. Comment out the 2 (4 really) lines that start with `static const DimCheckMode STRICT` (*.pb.h).
         2. Comment out the 2 lines that contain `::STRICT` (*.pb.cc).
 3. Some final error about copy will occur. Simply re-run `build_win.cmd` and it will work.
 
 
 
 ### Moving Files
-1. Copy `include\` as `include`.
-2. Copy `build\install\bin` as `bin` (or `build\install\python\caffe`).
+1. Copy `build\install\bin` as `bin` (or `build\install\python\caffe`).
     1. Add `cudnn64_8.dll`.
+2. Copy `include\` as `include`.
 3. Copy `build\caffe` & `build\include\caffe` as `include2\caffe`.
 4. Copy from `build\lib\`: `caffe.lib` & `caffeproto.lib` as `lib`.
 5. caffe3rdparty = caffe\..\caffe3rdparty\dependencies\libraries_v140_x64_py27_1.1.0:
     1. Copy `$caffe3rdparty\include` as `caffe3rdparty\include` (remove OpenCV/LevelDB folders).
     2. Copy `$caffe3rdparty\lib` as `caffe3rdparty\lib` (remove DLLs and unnecessary libs like OpenCV/LevelDB and all `lib*.lib`/`*static*.lib` files).
     3. Move `boost` out of `boost-1_61`.
-6. Repeat the whole process with `Release` --> `Debug` in `build_win.cmd`.
+6. Repeat the whole process with `Debug` (rather than `Release`) in `build_win.cmd`. Note: `lib/` folder gets deleted, otherwise there would be no need to copy the `Release` folder before `Debug` is generated.
 
 
 
